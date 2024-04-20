@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "954938723219",
+    "firebase_url": "https://farm-land-ba606-default-rtdb.firebaseio.com",
+    "project_id": "farm-land-ba606",
+    "storage_bucket": "farm-land-ba606.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954938723219:android:d4a6fdd29fb14d8b2af666",
+        "android_client_info": {
+          "package_name": "com.example.farm_land"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCiAY46VaZPfW3Jxse26_mSLj9EpKKdBZM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
