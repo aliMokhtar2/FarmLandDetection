@@ -13,7 +13,7 @@ class DisplayInformation extends StatelessWidget {
         backgroundColor: Colors.green.shade900,
         title: Text(
           "Account Information",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
       ),
       body: FutureBuilder(
@@ -27,14 +27,13 @@ class DisplayInformation extends StatelessWidget {
           }
           var userData = snapshot.data!.data() as Map<String, dynamic>;
           return Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(25.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildInfoRow("First Name :", userData['userFirstName']),
-                _buildInfoRow("Last Name :", userData['userLastName']),
+                _buildInfoRow("Name :", userData['userFirstName'] + " " + userData['userLastName']),
                 _buildInfoRow("E-mail :", userData['userEmail']),
-                 _buildInfoRow("Password :", userData['userPassword']),
+                //  _buildInfoRow("Password :", userData['userPassword']),
                 _buildInfoRow("Phone Number :", userData['userNumber']),
                 _buildInfoRow("User ID :", userData['userId']),
                 // Add more fields as needed
@@ -68,7 +67,7 @@ class DisplayInformation extends StatelessWidget {
             child: Text(
               label,
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
@@ -80,7 +79,7 @@ class DisplayInformation extends StatelessWidget {
               value,
               style: TextStyle(
                 fontSize: 16.0,
-                color: Colors.grey[800],
+                color: Colors.black,
               ),
             ),
           ),

@@ -51,7 +51,7 @@ class _SignUpState extends State<SignUp> {
         backgroundColor: Colors.green.shade900,
         title: const Text(
           "Sign Up ",
-          style: TextStyle(color: Colors.white, fontSize: 30),
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
       ),
       body: Form(
@@ -182,7 +182,7 @@ class _SignUpState extends State<SignUp> {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: const Text(
-                      'Creat',
+                      'Register',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,

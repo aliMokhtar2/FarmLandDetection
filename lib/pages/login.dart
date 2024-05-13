@@ -31,147 +31,159 @@ class _MyFirsAppState extends State<MyFirstApp> {
         backgroundColor: Colors.green.shade900,
         title: const Text(
           'My Farm',
-          style: TextStyle(fontSize: 30, color: Colors.white),
+          style: TextStyle(fontSize: 25, color: Colors.white),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: Form(
-            key: formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const SizedBox(
-                  height: 95,
-                ),
-                textfeild(
-                    "email",
-                    " enter email",
-                    IconButton(onPressed: () {}, icon: const Icon(Icons.email)),
-                    TextInputType.emailAddress,
-                    email,
-                    "Email is too short"),
-                const SizedBox(
-                  height: 25,
-                ),
-                textfeild(
-                    "password",
-                    " enter password",
-                    IconButton(
-                      icon: ic,
-                      onPressed: () {
-                        setState(() {
-                          pass = !pass;
-                          if (pass == true) {
-                            ic = const Icon(Icons.remove_red_eye_rounded);
-                          } else {
-                            ic = const Icon(Icons.remove_red_eye_outlined);
-                          }
-                        });
-                      },
-                    ),
-                    TextInputType.visiblePassword,
-                    password,
-                    "Password is too short"),
-                const SizedBox(
-                  height: 25,
-                ),
-                MaterialButton(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 10, horizontal: 80),
-                  onPressed: () async {
-                    if (formKey.currentState!.validate()) {
-                      try {
-                        //MyAppMethods.loadingPage(context: context);
-                        await auth
-                            .signInWithEmailAndPassword(
-                          email: email.text.trim(),
-                          password: password.text.trim(),
-                        )
-                            .then((value) async {
-                          Fluttertoast.showToast(
-                              msg: "Login Success!",
-                              toastLength: Toast.LENGTH_SHORT,
-                              textColor: Colors.white,
-                              backgroundColor: Colors.green);
-                          print('heeloooo');
-                           Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (_) => const Home()),
-                            //(route) => false,
-                          );
-                        });
-                        //Navigator.pop(context);
-                      } on FirebaseAuthException catch (error) {
-                        Fluttertoast.showToast(
-                          msg: "An error occured $error",
-                          toastLength: Toast.LENGTH_SHORT,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                        );
-                        print(error.toString());
-                      } catch (error) {
-                        Fluttertoast.showToast(
-                          msg: "An error occured $error",
-                          toastLength: Toast.LENGTH_SHORT,
-                          backgroundColor: Colors.red,
-                          textColor: Colors.white,
-                        );
-                        print(error.toString());
-                      }
-                    }
-                  },
-                  shape: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: const Text(
-                    'login',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return const forgetpass();
-                    }));
-                  },
-                  child: const Text(
-                    "Forget the password ?",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                      return const SignUp();
-                    }));
-                  },
-                  child: const Text(
-                    "Sign Up !",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                    ),
-                  ),
-                ),
-              ],
+body: SingleChildScrollView(
+  child: Padding(
+    padding: const EdgeInsets.all(20),
+    child: Form(
+      key: formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(
+            height: 95,
+          ),
+          TextFormField(
+            keyboardType: TextInputType.emailAddress,
+            controller: email,
+            decoration: InputDecoration(
+              labelText: "Enter Email",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              hintText: "example@example.com",
+              prefixIcon: const Icon(Icons.email),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Email is too short';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          TextFormField(
+            obscureText: pass,
+            keyboardType: TextInputType.visiblePassword,
+            controller: password,
+            decoration: InputDecoration(
+              labelText: "Enter Password",
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30.0),
+              ),
+              hintText: "Enter your password",
+              suffixIcon: IconButton(
+                icon: pass ? const Icon(Icons.remove_red_eye_rounded) : const Icon(Icons.remove_red_eye_outlined),
+                onPressed: () {
+                  setState(() {
+                    pass = !pass;
+                  });
+                },
+              ),
+              prefixIcon: const Icon(Icons.lock),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Password is too short';
+              }
+              return null;
+            },
+          ),
+          const SizedBox(
+            height: 25,
+          ),
+          MaterialButton(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 80),
+            onPressed: () async {
+              if (formKey.currentState!.validate()) {
+                try {
+                  await auth.signInWithEmailAndPassword(
+                    email: email.text.trim(),
+                    password: password.text.trim(),
+                  );
+                  Fluttertoast.showToast(
+                    msg: "Login Success",
+                    toastLength: Toast.LENGTH_SHORT,
+                    textColor: Colors.white,
+                    backgroundColor: Colors.green,
+                  );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (_) => const Home()),
+                  );
+                } on FirebaseAuthException catch (error) {
+                  Fluttertoast.showToast(
+                    msg: "An error occurred: $error",
+                    toastLength: Toast.LENGTH_SHORT,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                  print(error.toString());
+                } catch (error) {
+                  Fluttertoast.showToast(
+                    msg: "An error occurred: $error",
+                    toastLength: Toast.LENGTH_SHORT,
+                    backgroundColor: Colors.red,
+                    textColor: Colors.white,
+                  );
+                  print(error.toString());
+                }
+              }
+            },
+            shape: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(35),
+            ),
+            child: const Text(
+              'Login',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
-        ),
+          const SizedBox(height: 20),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                return forgetpass();
+              }));
+            },
+            child: const Text(
+              "Forgot Password ?",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+          ),
+          const SizedBox(height: 20),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) {
+                return const SignUp();
+              }));
+            },
+            child: const Text(
+              "Sign Up!",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ],
       ),
+    ),
+  ),
+),
     );
   }
 }
+
+

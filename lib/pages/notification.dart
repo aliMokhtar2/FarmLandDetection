@@ -68,8 +68,8 @@ class _NotificationScreenState extends State<NotificationScreen> {
               appBar: AppBar(
                 backgroundColor: Colors.green.shade900,
                 title: const Text(
-                  "History Of Image",
-                  style: TextStyle(color: Colors.white, fontSize: 20),
+                  "Notification",
+                  style: TextStyle(color: Colors.white, fontSize: 25),
                 ),
                 // actions: [
                 //   SizedBox(

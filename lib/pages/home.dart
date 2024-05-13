@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.green.shade900,
         title: const Text(
           "Home",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
         leading: Builder(
           builder: (context) => IconButton(
@@ -97,14 +97,14 @@ class _HomeState extends State<Home> {
               ),
               ListTile(
                 title: Text('Home'),
-                leading: Icon(Icons.home_outlined),
+                leading: Icon(Icons.home),
                 onTap: () {
                   // Navigate to home screen
                 },
               ),
               ListTile(
-                title: Text('History Of Image'),
-                leading: Icon(Icons.add_a_photo),
+                title: Text('Notification'),
+                leading: Icon(Icons.notifications_active),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (BuildContext context) {
@@ -115,7 +115,7 @@ class _HomeState extends State<Home> {
               ),
               ListTile(
                 title: Text('Account'),
-                leading: Icon(Icons.account_box),
+                leading: Icon(Icons.account_circle),
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(builder: (BuildContext context) {
