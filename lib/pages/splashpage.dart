@@ -16,7 +16,7 @@ class _SplashPageState extends State<SplashPage> {
     super.initState();
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => const MyFirsApp()));
+          context, MaterialPageRoute(builder: (context) => const MyFirstApp()));
     });
   }
 

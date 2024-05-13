@@ -7,14 +7,14 @@ import '../compont/textfield.dart';
 import 'forgetpass.dart';
 import 'home.dart';
 
-class MyFirsApp extends StatefulWidget {
-  const MyFirsApp({super.key});
+class MyFirstApp extends StatefulWidget {
+  const MyFirstApp({super.key});
 
   @override
-  State<MyFirsApp> createState() => _MyFirsAppState();
+  State<MyFirstApp> createState() => _MyFirsAppState();
 }
 
-class _MyFirsAppState extends State<MyFirsApp> {
+class _MyFirsAppState extends State<MyFirstApp> {
   var email = TextEditingController();
   var password = TextEditingController();
   Icon ic = const Icon(Icons.remove_red_eye_rounded);

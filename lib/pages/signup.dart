@@ -21,6 +21,7 @@ class _SignUpState extends State<SignUp> {
   Icon ic = const Icon(Icons.remove_red_eye_rounded);
   bool pass = true;
   var formKey = GlobalKey<FormState>();
+  var imageUrl = TextEditingController();
   final auth = FirebaseAuth.instance;
 
   Future<void> addDataToFirestore() async {
@@ -35,6 +36,13 @@ class _SignUpState extends State<SignUp> {
     });
   }
 
+  Future<void> addImages() async {
+        User? user = auth.currentUser;
+    await FirebaseFirestore.instance.collection("ImageCollection").doc(user!.uid).set({
+      'userId': user.uid,
+      'imageUrl': imageUrl.text, // URL of the image
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

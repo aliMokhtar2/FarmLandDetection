@@ -6,96 +6,126 @@ import 'login.dart';
 import 'notification.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({Key? key});
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   final auth = FirebaseAuth.instance;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green.shade300,
       appBar: AppBar(
         backgroundColor: Colors.green.shade900,
         title: const Text(
-          "My Farm",
-          style: TextStyle(color: Colors.white, fontSize: 30),
+          "Home",
+          style: TextStyle(color: Colors.white, fontSize: 20),
         ),
-        leading: IconButton(
-            onPressed: () async {
-              auth.signOut();
-              await Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (_) => const MyFirsApp()),
-                (route) => false,
-              );
+        leading: Builder(
+          builder: (context) => IconButton(
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
             },
-            icon: const Icon(Icons.keyboard_arrow_left_sharp)),
+            icon: const Icon(Icons.menu),
+          ),
+        ),
       ),
-      body: SizedBox(
-        width: double.infinity,
-        height: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              "assets/img/img home.png",
-              alignment: Alignment.center,
-              width: 200,
-              height: 200,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  'assets/img/pexels-joaojesusdesign-2480070.jpg',
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+          ),
+          Container(
+            color: Colors.green.shade300.withOpacity(0.5), // Adjust overlay opacity as needed
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                 MaterialButton(
+                Text(
+                  'Welcome to',
+                  style: TextStyle(
                     color: Colors.white,
-                    child: const Icon(
-                      Icons.home,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {}),
-                MaterialButton(
+                    fontSize: 34,
+                  ),
+                ),
+                Text(
+                  'Your Farm',
+                  style: TextStyle(
                     color: Colors.white,
-                    child: const Icon(
-                      Icons.notifications,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return const NotificationScreen();
-                        }),
-                      );
-                    }),
-                 MaterialButton(
-                    color: Colors.white,
-                    child: const Icon(
-                      Icons.settings,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(builder: (BuildContext context) {
-                          return const setting();
-                        }),
-                      );
-                    }),
-                 MaterialButton(
-                    color: Colors.white,
-                    child: const Icon(
-                      Icons.refresh,
-                      color: Colors.black,
-                    ),
-                    onPressed: () {}),
+                    fontSize: 46,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
-          ],
+          ),
+        ],
+      ),
+      drawer: Opacity(
+        opacity: 0.9, // Adjust the opacity value as needed
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.green.shade900,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Dashbord',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 24,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text('Home'),
+                leading: Icon(Icons.home_outlined),
+                onTap: () {
+                  // Navigate to home screen
+                },
+              ),
+              ListTile(
+                title: Text('History Of Image'),
+                leading: Icon(Icons.add_a_photo),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return const NotificationScreen();
+                    }),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Account'),
+                leading: Icon(Icons.account_box),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return const DisplayInformation();
+                    }),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
