@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.green.shade900,
         title: const Text(
           "Home",
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white, fontSize: 27),
         ),
         leading: Builder(
           builder: (context) => IconButton(
@@ -82,13 +82,13 @@ class _HomeState extends State<Home> {
                   color: Colors.green.shade900,
                 ),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       'Dashbord',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 24,
+                        fontSize: 35,
                       ),
                     ),
                     SizedBox(height: 10),
@@ -101,6 +101,7 @@ class _HomeState extends State<Home> {
                 onTap: () {
                   // Navigate to home screen
                 },
+                
               ),
               ListTile(
                 title: Text('Notification'),

@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:farm_land/pages/home.dart';
 import 'package:farm_land/pages/real_time_widget.dart';
+import 'package:farm_land/pages/setting.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import '../servises/firebase_servise.dart';
@@ -64,6 +66,68 @@ class _NotificationScreenState extends State<NotificationScreen> {
             Set<String> uniqueImages = Set.from(imagesLink);
 
             return Scaffold(
+              drawer: Opacity(
+                opacity: 0.9, // Adjust the opacity value as needed
+                child: Drawer(
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: <Widget>[
+                      DrawerHeader(
+                        decoration: BoxDecoration(
+                          color: Colors.green.shade900,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              'Dashbord',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 35,
+                              ),
+                            ),
+                            SizedBox(height: 10),
+                          ],
+                        ),
+                      ),
+                      ListTile(
+                        title: Text('Home'),
+                        leading: Icon(Icons.home),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    Home()), // Replace HomeScreen with the actual screen widget for the home page
+                          );
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Notification'),
+                        leading: Icon(Icons.notifications_active),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return const NotificationScreen();
+                            }),
+                          );
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Account'),
+                        leading: Icon(Icons.account_circle),
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(builder: (BuildContext context) {
+                              return const DisplayInformation();
+                            }),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ),
               backgroundColor: Colors.green.shade300,
               appBar: AppBar(
                 backgroundColor: Colors.green.shade900,
@@ -105,33 +169,33 @@ class _NotificationScreenState extends State<NotificationScreen> {
               appBar: AppBar(
                 backgroundColor: Colors.green.shade900,
                 title: const Text(
-                  "History Of Image",
+                  "Notification",
                   style: TextStyle(color: Colors.white, fontSize: 30),
                 ),
-                actions: [
-                  SizedBox(
-                    width: 100,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: TextFormField(
-                        style:
-                            const TextStyle(color: Colors.white, fontSize: 10),
-                        decoration: InputDecoration(
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25),
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                  width: 2,
-                                )),
-                            focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(25),
-                                borderSide:
-                                    const BorderSide(color: Colors.black))),
-                      ),
-                    ),
-                  ),
-                  //IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-                ],
+                // actions: [
+                //   SizedBox(
+                //     width: 100,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(10),
+                //       child: TextFormField(
+                //         style:
+                //             const TextStyle(color: Colors.white, fontSize: 10),
+                //         decoration: InputDecoration(
+                //             enabledBorder: OutlineInputBorder(
+                //                 borderRadius: BorderRadius.circular(25),
+                //                 borderSide: const BorderSide(
+                //                   color: Colors.black,
+                //                   width: 2,
+                //                 )),
+                //             focusedBorder: OutlineInputBorder(
+                //                 borderRadius: BorderRadius.circular(25),
+                //                 borderSide:
+                //                     const BorderSide(color: Colors.black))),
+                //       ),
+                //     ),
+                //   ),
+                //   //IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+                // ],
               ),
               body: const Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -150,32 +214,32 @@ class _NotificationScreenState extends State<NotificationScreen> {
             appBar: AppBar(
               backgroundColor: Colors.green.shade900,
               title: const Text(
-                "History Of Image",
+                "Notification",
                 style: TextStyle(color: Colors.white, fontSize: 20),
               ),
-              actions: [
-                SizedBox(
-                  width: 100,
-                  child: Padding(
-                    padding: const EdgeInsets.all(10),
-                    child: TextFormField(
-                      style: const TextStyle(color: Colors.white, fontSize: 10),
-                      decoration: InputDecoration(
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25),
-                              borderSide: const BorderSide(
-                                color: Colors.black,
-                                width: 2,
-                              )),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(25),
-                              borderSide:
-                                  const BorderSide(color: Colors.black))),
-                    ),
-                  ),
-                ),
-                //IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-              ],
+              // actions: [
+              //   SizedBox(
+              //     width: 100,
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(10),
+              //       child: TextFormField(
+              //         style: const TextStyle(color: Colors.white, fontSize: 10),
+              //         decoration: InputDecoration(
+              //             enabledBorder: OutlineInputBorder(
+              //                 borderRadius: BorderRadius.circular(25),
+              //                 borderSide: const BorderSide(
+              //                   color: Colors.black,
+              //                   width: 2,
+              //                 )),
+              //             focusedBorder: OutlineInputBorder(
+              //                 borderRadius: BorderRadius.circular(25),
+              //                 borderSide:
+              //                     const BorderSide(color: Colors.black))),
+              //       ),
+              //     ),
+              //   ),
+              //   //IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+              // ],
             ),
             body: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -192,6 +256,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
     );
   }
 }
+
 class ImageDisplayPage extends StatelessWidget {
   final String imageUrl;
   final RealTimeModel realTimeModel;
@@ -210,48 +275,101 @@ class ImageDisplayPage extends StatelessWidget {
         backgroundColor: Colors.green.shade900,
         title: const Text(
           "Image Content",
-          style: TextStyle(color: Colors.white, fontSize: 20),
+          style: TextStyle(color: Colors.white, fontSize: 25),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: CachedNetworkImage(
-              imageUrl: realTimeModel.photoUrl,
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
+                child: CachedNetworkImage(
+                  imageUrl: realTimeModel.photoUrl,
+                  placeholder: (context, url) => CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
+                ),
+              ),
             ),
-          ),
-          SizedBox(height: 20), // Add space between image and text
-          Container(
-            padding: EdgeInsets.all(10), // Add padding to create a box
-            decoration: BoxDecoration(
-              color: Colors.white, // Set background color of the box
-              borderRadius: BorderRadius.circular(10), // Optional: Add border radius to the box
-            ),
-            child: Text(
-              realTimeModel.name,
-              style: TextStyle(fontSize: 18),
-            ),
-          ),
-          SizedBox(height: 10), // Add space between the two text boxes
-          Container(
-            padding: EdgeInsets.all(10), // Add padding to create a box
-            decoration: BoxDecoration(
-              color: Colors.white, // Set background color of the box
-              borderRadius: BorderRadius.circular(10), // Optional: Add border radius to the box
-            ),
-            child: Text(
-              realTimeModel.dateTime,
-              style: TextStyle(fontSize: 18),
-            ),
-          ),
-        ],
+            _buildDetailBox(realTimeModel.name, realTimeModel.dateTime),
+          ],
+        ),
       ),
     );
   }
+
+Widget _buildDetailBox(String name, String date) {
+  return Container(
+    width: double.infinity,
+    padding: EdgeInsets.all(20),
+    margin: EdgeInsets.all(20),
+    decoration: BoxDecoration(
+      color: Color.fromARGB(255, 56, 135, 62),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Name of animal : ",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: Colors.yellow, // Change to your desired color
+              ),
+            ),
+            Expanded(
+              child: Text(
+                name,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: 10),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Date and time : ",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.bold,
+                color: Colors.yellow, // Change to your desired color
+              ),
+            ),
+            Expanded(
+              child: Text(
+                date,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    ),
+  );
 }
+
+
+}
+
+
+
+
+
 // class ImageDisplayPage extends StatelessWidget {
 //   final String imageUrl;
 //   final RealTimeModel realTimeModel;

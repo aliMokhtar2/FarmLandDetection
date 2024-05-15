@@ -35,31 +35,35 @@ class RealTImeWidget extends StatelessWidget {
               child: Center(
                 child: SizedBox(
                   height:
-                      270, // Adjust the height as needed to add space between boxes
+                      250, // Adjust the height as needed to add space between boxes
                   child: Padding(
                     padding: const EdgeInsets.all(
-                        10.0), // Add padding around the container
+                        17.0), // Add padding around the container
                     child: SingleChildScrollView(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CachedNetworkImage(
-                              imageUrl: realTimeList[index].photoUrl,
-                              placeholder: (context, url) =>
-                                  const CircularProgressIndicator(),
-                            ),
-                            SizedBox(
-                                height: 15), // Add space between image and text
-                            Text(
-                              realTimeList[index].name,
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          ],
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Color.fromARGB(255, 56, 135, 62),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: realTimeList[index].photoUrl,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                              ),
+                              SizedBox(
+                                  height:
+                                      10), // Add space between image and text
+                              Text(
+                                realTimeList[index].name,
+                                style: TextStyle(fontSize: 15, color: Colors.white),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

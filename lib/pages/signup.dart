@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farm_land/pages/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 import '../compont/textfield.dart';
 import 'home.dart';
 
@@ -37,22 +37,30 @@ class _SignUpState extends State<SignUp> {
   }
 
   Future<void> addImages() async {
-        User? user = auth.currentUser;
-    await FirebaseFirestore.instance.collection("ImageCollection").doc(user!.uid).set({
+    User? user = auth.currentUser;
+    await FirebaseFirestore.instance
+        .collection("ImageCollection")
+        .doc(user!.uid)
+        .set({
       'userId': user.uid,
       'imageUrl': imageUrl.text, // URL of the image
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.green.shade300,
       appBar: AppBar(
         backgroundColor: Colors.green.shade900,
-        title: const Text(
+        title: Text(
           "Sign Up ",
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 27,
+          ),
         ),
+        centerTitle: true,
       ),
       body: Form(
         key: formKey,
@@ -65,7 +73,18 @@ class _SignUpState extends State<SignUp> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 45,
+                    height: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Create an account ,To use this app",
+                          style: TextStyle(
+                              fontSize: 17, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 25,
                   ),
                   textfeild(
                       "First Name",
@@ -155,7 +174,8 @@ class _SignUpState extends State<SignUp> {
                             );
                             await Navigator.pushAndRemoveUntil(
                               context,
-                              MaterialPageRoute(builder: (_) => const Home()),
+                              MaterialPageRoute(
+                                  builder: (_) => const MyFirstApp()),
                               (route) => false,
                             );
                           });
@@ -182,7 +202,7 @@ class _SignUpState extends State<SignUp> {
                       borderRadius: BorderRadius.circular(25),
                     ),
                     child: const Text(
-                      'Register',
+                      'Sign up',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,

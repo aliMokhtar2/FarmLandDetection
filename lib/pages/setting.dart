@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farm_land/pages/home.dart';
+import 'package:farm_land/pages/notification.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +10,68 @@ class DisplayInformation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Opacity(
+        opacity: 0.9, // Adjust the opacity value as needed
+        child: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.green.shade900,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      'Dashbord',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 35,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                ),
+              ),
+              ListTile(
+                title: Text('Home'),
+                leading: Icon(Icons.home),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Home()), // Replace HomeScreen with the actual screen widget for the home page
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Notification'),
+                leading: Icon(Icons.notifications_active),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return const NotificationScreen();
+                    }),
+                  );
+                },
+              ),
+              ListTile(
+                title: Text('Account'),
+                leading: Icon(Icons.account_circle),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                      return const DisplayInformation();
+                    }),
+                  );
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
       backgroundColor: Colors.green.shade300,
       appBar: AppBar(
         backgroundColor: Colors.green.shade900,
@@ -23,7 +87,9 @@ class DisplayInformation extends StatelessWidget {
             return Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.data() == null) {
-            return Center(child: Text('No data available', style: Theme.of(context).textTheme.subtitle1));
+            return Center(
+                child: Text('No data available',
+                    style: Theme.of(context).textTheme.subtitle1));
           }
           var userData = snapshot.data!.data() as Map<String, dynamic>;
           return Padding(
@@ -31,9 +97,9 @@ class DisplayInformation extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildInfoRow("Name :", userData['userFirstName'] + " " + userData['userLastName']),
+                _buildInfoRow("Name :",
+                    userData['userFirstName'] + " " + userData['userLastName']),
                 _buildInfoRow("E-mail :", userData['userEmail']),
-                //  _buildInfoRow("Password :", userData['userPassword']),
                 _buildInfoRow("Phone Number :", userData['userNumber']),
                 _buildInfoRow("User ID :", userData['userId']),
                 // Add more fields as needed

@@ -1,4 +1,3 @@
-//import 'package:farm_land/pages/login.dart';
 //import 'dart:js';
 import 'package:farm_land/pages/home.dart';
 import 'package:farm_land/pages/login.dart';
@@ -10,7 +9,6 @@ import 'package:farm_land/servises/notification.dart';
 import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-//import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'firebase_options.dart';
@@ -45,7 +43,7 @@ Future<void> main() async {
     // 4. App Attest provider with fallback to Device Check provider (App Attest provider is only available on iOS 14.0+, macOS 14.0+)
     appleProvider: AppleProvider.appAttest,
   );
-  runApp(const MyApp());
+  runApp(const MyApp());  
 }
 
 class MyApp extends StatefulWidget {
@@ -70,9 +68,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'Flu'),
+      theme: ThemeData(fontFamily: 'Roboto'),
       debugShowCheckedModeBanner: false,
-      home: const MyFirstApp(),
+      home: const SplashPage(),
     );
   }
 }
