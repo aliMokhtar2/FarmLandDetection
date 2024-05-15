@@ -77,7 +77,7 @@ class DisplayInformation extends StatelessWidget {
         backgroundColor: Colors.green.shade900,
         title: Text(
           "Account Information",
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(color: Colors.white, fontSize: 22),
         ),
       ),
       body: FutureBuilder(
@@ -110,6 +110,7 @@ class DisplayInformation extends StatelessWidget {
       ),
     );
   }
+
   Future<DocumentSnapshot> getCurrentUserData() async {
     User? user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -122,6 +123,7 @@ class DisplayInformation extends StatelessWidget {
       throw Exception('User not logged in');
     }
   }
+
   Widget _buildInfoRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -129,11 +131,11 @@ class DisplayInformation extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
-            width: 120,
+            width: 130,
             child: Text(
               label,
               style: TextStyle(
-                fontSize: 20.0,
+                fontSize: 15.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.black,
               ),
@@ -144,7 +146,7 @@ class DisplayInformation extends StatelessWidget {
             child: Text(
               value,
               style: TextStyle(
-                fontSize: 16.0,
+                fontSize: 13.0,
                 color: Colors.black,
               ),
             ),

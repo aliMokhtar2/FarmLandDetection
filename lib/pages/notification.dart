@@ -12,10 +12,12 @@ class RealTimeModel {
   String name;
   String dateTime;
   String photoUrl;
+  String Time;
   RealTimeModel({
     required this.name,
     required this.dateTime,
     required this.photoUrl,
+    required this.Time,
   });
 }
 
@@ -44,14 +46,18 @@ class _NotificationScreenState extends State<NotificationScreen> {
                       .toString() !=
                   'null') {
                 realTimeList.add(RealTimeModel(
-                    name: (snapshot.data!.children.toList()[i].value
-                            as Map)['name']
-                        .toString(),
-                    dateTime: (snapshot.data!.children.toList()[i].value
-                            as Map)['dateTime']
-                        .toString(),
-                    photoUrl: (snapshot.data!.children.toList()[i].value
-                        as Map)['photo_url']));
+                  name:
+                      (snapshot.data!.children.toList()[i].value as Map)['name']
+                          .toString(),
+                  dateTime: (snapshot.data!.children.toList()[i].value
+                          as Map)['dateTime']
+                      .toString(),
+                  photoUrl: (snapshot.data!.children.toList()[i].value
+                      as Map)['photo_url'],
+                  Time:
+                      (snapshot.data!.children.toList()[i].value as Map)['Time']
+                          .toString(),
+                ));
               }
               var photoUrl = snapshot.data!.children.toList()[i].key;
               String img = snapshot.data!
@@ -294,81 +300,101 @@ class ImageDisplayPage extends StatelessWidget {
                 ),
               ),
             ),
-            _buildDetailBox(realTimeModel.name, realTimeModel.dateTime),
+            _buildDetailBox(
+                realTimeModel.name, realTimeModel.dateTime, realTimeModel.Time),
           ],
         ),
       ),
     );
   }
 
-Widget _buildDetailBox(String name, String date) {
-  return Container(
-    width: double.infinity,
-    padding: EdgeInsets.all(20),
-    margin: EdgeInsets.all(20),
-    decoration: BoxDecoration(
-      color: Color.fromARGB(255, 56, 135, 62),
-      borderRadius: BorderRadius.circular(10),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Name of animal : ",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-                color: Colors.yellow, // Change to your desired color
-              ),
-            ),
-            Expanded(
-              child: Text(
-                name,
+  Widget _buildDetailBox(String name, String date, String time) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Color.fromARGB(255, 56, 135, 62),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Name of animal : ",
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.yellow, // Change to your desired color
                 ),
               ),
-            ),
-          ],
-        ),
-        SizedBox(height: 10),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Date and time : ",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.bold,
-                color: Colors.yellow, // Change to your desired color
-              ),
-            ),
-            Expanded(
-              child: Text(
-                date,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.white,
+              Expanded(
+                child: Text(
+                  name,
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-          ],
-        ),
-      ],
-    ),
-  );
+            ],
+          ),
+          SizedBox(height: 13),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Date : ",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.yellow, // Change to your desired color
+                    ),
+                  ),
+                  SizedBox(height: 13),
+                  Text(
+                    "Time : ",
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.yellow, // Change to your desired color
+                    ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    date,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  Text(
+                    time,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
-}
-
-
-
-
 
 // class ImageDisplayPage extends StatelessWidget {
 //   final String imageUrl;
