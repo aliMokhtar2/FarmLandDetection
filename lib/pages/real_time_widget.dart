@@ -58,7 +58,7 @@ class RealTImeWidget extends StatelessWidget {
                                   height:
                                       10), // Add space between image and text
                               Text(
-                                realTimeList[index].name,
+                                realTimeList[index].Time,
                                 style: TextStyle(fontSize: 15, color: Colors.white),
                                 textAlign: TextAlign.center,
                               ),

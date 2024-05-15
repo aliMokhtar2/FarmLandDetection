@@ -3,6 +3,7 @@ import 'package:farm_land/pages/home.dart';
 import 'package:farm_land/pages/login.dart';
 import 'package:farm_land/pages/notification.dart';
 import 'package:farm_land/pages/setting.dart';
+import 'package:farm_land/pages/signup.dart';
 import 'package:farm_land/pages/splashpage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:farm_land/servises/notification.dart';
@@ -70,7 +71,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(fontFamily: 'Roboto'),
       debugShowCheckedModeBanner: false,
-      home: const SplashPage(),
+      home: const SignUp(),
     );
   }
 }
